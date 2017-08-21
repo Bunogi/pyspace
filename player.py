@@ -3,10 +3,12 @@ import pygame
 
 p_size = 30
 p_speed = 90
+p_speed_boost = 2 * p_speed
 key_left = pygame.K_LEFT
 key_right = pygame.K_RIGHT
 key_up = pygame.K_UP
 key_down = pygame.K_DOWN
+key_boost = pygame.K_LSHIFT
 
 
 class Player:
@@ -16,14 +18,17 @@ class Player:
 
     def update(self, dt):
         keys = pygame.key.get_pressed()
+        speed = p_speed
+        if keys[key_boost]:
+            speed = p_speed_boost
         if keys[key_left]:
-            self.xPos -= p_speed * dt
+            self.xPos -= speed * dt
         if keys[key_right]:
-            self.xPos += p_speed * dt
+            self.xPos += speed * dt
         if keys[key_up]:
-            self.yPos -= p_speed * dt
+            self.yPos -= speed * dt
         if keys[key_down]:
-            self.yPos += p_speed * dt
+            self.yPos += speed * dt
 
     def draw(self):
         pygame.draw.rect(globals.screen, (0, 0xFF, 0),
