@@ -16,6 +16,9 @@ class Player:
         self.xPos = (globals.resolution[0] / 2) - (p_size / 2)
         self.yPos = (globals.resolution[1] / 2) + (globals.resolution[1] / 3)
 
+    def take_damage(self):
+        self.__init__()  # TODO: Replace with proper system
+
     def update(self, dt):
         keys = pygame.key.get_pressed()
         speed = p_speed

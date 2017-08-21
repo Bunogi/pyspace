@@ -37,15 +37,25 @@ while not done:
         i.update(dt)
         i.draw()
 
+    player_damaged = False
     for i in enemies:
         if not globals.pause:
             i.update(dt)
+            if i.check_collision(player):
+                player.take_damage()
+                player_damaged = True
+                break
 
         i.draw()
 
+    if player_damaged:
+        globals.pause = True
+        for i in enemies:
+            i.__init__()
+
     if globals.pause:
-        globals.screen.blit(globals.main_font.render("Paused.", False,
-                                                     (0xFF, 0xFF, 0xFF)), (0, 0))
+        globals.screen.blit(globals.main_font.render("Paused/ded", False,
+                                                     (0xFF, 0xFF, 0xFF)), (100, 450))
     else:
         player.update(dt)
 
