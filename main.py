@@ -27,6 +27,9 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                globals.pause = not globals.pause
 
     globals.screen.fill((0, 0, 0))
 
@@ -35,10 +38,18 @@ while not done:
         i.draw()
 
     for i in enemies:
-        i.update(dt)
+        if not globals.pause:
+            i.update(dt)
+
         i.draw()
 
-    player.update(dt)
+    if globals.pause:
+        globals.screen.blit(globals.main_font.render("Paused.", False,
+                                                     (0xFF, 0xFF, 0xFF)), (0, 0))
+    else:
+        player.update(dt)
+
     player.draw()
+
     pygame.display.flip()
     dt = time() - t_start
