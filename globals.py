@@ -12,3 +12,5 @@ def init():
     pygame.font.init()
     global main_font
     main_font = pygame.font.SysFont("Sans", 30)
+    global projectiles
+    projectiles = []

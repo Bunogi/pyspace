@@ -1,4 +1,6 @@
-def check_collision(obj0, obj1):  # obj: (x, y, w, h)
+def has_collision(obj0, obj1):  # obj has get_collision_info, returning (x, y, w, h)
+    obj0 = obj0.get_collision_info()
+    obj1 = obj1.get_collision_info()
     a_hit_x = obj0[0] + 2
     a_hit_y = obj0[1] + 2
     a_hit_w = obj0[2] - 2

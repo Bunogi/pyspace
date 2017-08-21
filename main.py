@@ -3,6 +3,7 @@ from star import Star
 from time import time
 from player import Player
 from enemy import Enemy
+from collision import has_collision
 
 import globals
 
@@ -41,11 +42,16 @@ while not done:
     for i in enemies:
         if not globals.pause:
             i.update(dt)
-            if i.check_collision(player.get_collision_info()):
+            if has_collision(player, i):
                 player.take_damage()
                 player_damaged = True
                 break
 
+        i.draw()
+
+    for i in globals.projectiles:
+        if not globals.pause:
+            i.update(dt)
         i.draw()
 
     if player_damaged:
