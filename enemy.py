@@ -5,21 +5,17 @@ import globals
 from math import floor
 
 
-size_max = 6
-size_min = 3
-
-
 def get_speed(size):
-    return (size - size_min + 1) * 100
+    return (size + 1) * 10
 
 
-class Star:
+class Enemy:
     def get_random_x(self):
         return random.randint(self.border_offset,
                               globals.resolution[0] - self.border_offset)
 
     def __init__(self):
-        self.size = random.randint(size_min, size_max)
+        self.size = 30
         self.border_offset = floor((self.size / 2))
         self.speed = get_speed(self.size)
         self.xPos = self.get_random_x()
@@ -30,7 +26,7 @@ class Star:
         self.yPos = -self.size
 
     def draw(self):
-        pygame.draw.rect(globals.screen, (0xFF, 0xFF, 0xFF),
+        pygame.draw.rect(globals.screen, (0xFF, 0, 0),
                          pygame.Rect(self.xPos, self.yPos,
                                      self.size, self.size))
 
