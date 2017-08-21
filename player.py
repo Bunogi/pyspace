@@ -19,6 +19,9 @@ class Player:
     def take_damage(self):
         self.__init__()  # TODO: Replace with proper system
 
+    def get_collision_info(self):
+        return (self.xPos, self.yPos, p_size, p_size)
+
     def update(self, dt):
         keys = pygame.key.get_pressed()
         speed = p_speed

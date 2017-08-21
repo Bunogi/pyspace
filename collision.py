@@ -1,0 +1,14 @@
+def check_collision(obj0, obj1):  # obj: (x, y, w, h)
+    a_hit_x = obj0[0] + 2
+    a_hit_y = obj0[1] + 2
+    a_hit_w = obj0[2] - 2
+    a_hit_h = obj0[3] - 2
+    b_hit_x = obj1[0] + 2
+    b_hit_y = obj1[1] + 2
+    b_hit_h = obj1[2] - 2
+    b_hit_w = obj1[3] - 2
+    # AABB collision detection
+    if a_hit_x < b_hit_x + b_hit_w and a_hit_x + a_hit_w > b_hit_x and a_hit_y < b_hit_y + b_hit_h and a_hit_h + a_hit_y > b_hit_y:
+        return True
+    else:
+        return False

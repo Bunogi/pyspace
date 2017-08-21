@@ -41,7 +41,7 @@ while not done:
     for i in enemies:
         if not globals.pause:
             i.update(dt)
-            if i.check_collision(player):
+            if i.check_collision(player.get_collision_info()):
                 player.take_damage()
                 player_damaged = True
                 break
