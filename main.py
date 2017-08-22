@@ -49,19 +49,32 @@ while not done:
 
         i.draw()
 
-    for i in globals.projectiles:
+    proj_removal = []
+    for i, j in enumerate(globals.projectiles):
         if not globals.pause:
-            i.update(dt)
-        i.draw()
+            if j.update(dt):
+                proj_removal.append(i)
+                continue
+
+        # TODO: Use collision-detection algorithm to avoid checking every single entity
+            for k, l in enumerate(enemies):
+                if has_collision(j, l):
+                    proj_removal.append(i)
+                    enemies.remove(l)
+                    break
+        j.draw()
+
+    for i in range(len(proj_removal)):
+        del globals.projectiles[proj_removal[i]]
 
     if player_damaged:
         globals.pause = True
         for i in enemies:
             i.__init__()
+        globals.projectiles = []
 
     if globals.pause:
-        globals.screen.blit(globals.main_font.render("Paused/ded", False,
-                                                     (0xFF, 0xFF, 0xFF)), (100, 450))
+        globals.screen.blit(globals.main_font.render("Paused/ded", False, (0xFF, 0xFF, 0xFF)), (100, 450))
     else:
         player.update(dt)
 
