@@ -6,7 +6,7 @@ from projectile import Projectile
 p_size = 30
 p_speed = 200
 p_speed_boost = 1.5 * p_speed
-p_firing_speed = 0.2
+p_firing_interval = 0.2
 key_left = pygame.K_LEFT
 key_right = pygame.K_RIGHT
 key_up = pygame.K_UP
@@ -42,7 +42,7 @@ class Player:
             self.yPos -= speed * dt
         if keys[key_down]:
             self.yPos += speed * dt
-        if keys[key_shoot] and self.t_last_shot > p_firing_speed:
+        if keys[key_shoot] and self.t_last_shot > p_firing_interval:
             self.shoot()
             self.t_last_shot = 0
 
