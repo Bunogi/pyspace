@@ -4,9 +4,9 @@ import pygame
 from projectile import Projectile
 
 p_size = 30
-p_speed = 90
-p_speed_boost = 2 * p_speed
-p_firing_speed = 0.1
+p_speed = 200
+p_speed_boost = 1.5 * p_speed
+p_firing_speed = 0.2
 key_left = pygame.K_LEFT
 key_right = pygame.K_RIGHT
 key_up = pygame.K_UP

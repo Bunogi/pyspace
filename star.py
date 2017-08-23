@@ -9,10 +9,6 @@ size_max = 6
 size_min = 3
 
 
-def get_speed(size):
-    return (size - size_min + 1) * 100
-
-
 class Star:
     def get_random_x(self):
         return random.randint(self.border_offset,
@@ -21,7 +17,7 @@ class Star:
     def __init__(self):
         self.size = random.randint(size_min, size_max)
         self.border_offset = floor((self.size / 2))
-        self.speed = get_speed(self.size)
+        self.speed = (self.size / 3) * 400
         self.xPos = self.get_random_x()
         self.yPos = random.uniform(0, globals.resolution[1])
 

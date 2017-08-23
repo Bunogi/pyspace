@@ -9,7 +9,7 @@ import time
 
 class Enemy:
     def get_random_x(self):
-        return random.randint(self.border_offset,
+        return random.uniform(self.border_offset,
                               globals.resolution[0] - self.border_offset)
 
     def __init__(self):

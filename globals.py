@@ -3,14 +3,11 @@ import pygame
 
 def init():
     pygame.init()
-    global resolution
+    global resolution, screen, pause, game_over, main_font, projectiles
     resolution = (500, 900)
-    global screen
     screen = pygame.display.set_mode(resolution)
-    global pause
     pause = False
+    game_over = False
     pygame.font.init()
-    global main_font
     main_font = pygame.font.SysFont("Sans", 30)
-    global projectiles
     projectiles = []

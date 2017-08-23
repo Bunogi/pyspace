@@ -13,7 +13,7 @@ done = False
 
 stars = []
 
-for i in range(50):
+for i in range(80):
     stars.append(Star())
 
 enemies = []
@@ -23,20 +23,28 @@ for i in range(10):
 
 dt = 0
 player = Player()
+e_spawnrate = 1.1
+e_spawn_timer = 0
 while not done:
     t_start = time()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
+            if event.key == pygame.K_ESCAPE and not globals.game_over:
                 globals.pause = not globals.pause
 
     globals.screen.fill((0, 0, 0))
 
     for i in stars:
-        i.update(dt)
+        if not globals.pause:
+            i.update(dt)
         i.draw()
+
+    e_spawn_timer += dt
+    if e_spawn_timer >= e_spawnrate:
+        enemies.append(Enemy())
+        e_spawn_timer = 0
 
     player_damaged = False
     for i in enemies:
@@ -68,13 +76,15 @@ while not done:
         del globals.projectiles[proj_removal[i]]
 
     if player_damaged:
-        globals.pause = True
+        globals.pause = globals.game_over = True
         for i in enemies:
             i.__init__()
         globals.projectiles = []
 
-    if globals.pause:
-        globals.screen.blit(globals.main_font.render("Paused/ded", False, (0xFF, 0xFF, 0xFF)), (100, 450))
+    if globals.game_over:
+        globals.screen.blit(globals.main_font.render("Game Over!", False, (0xFF, 0xFF, 0xFF)), (100, 450))
+    elif globals.pause:
+        globals.screen.blit(globals.main_font.render("Paused", False, (0xFF, 0xFF, 0xFF)), (100, 450))
     else:
         player.update(dt)
 
