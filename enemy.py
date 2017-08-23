@@ -16,12 +16,13 @@ e_max_distance = 250
 e_max_speed = 600
 e_speed_factor = 3
 
+
 def gen_coords():
     return Vector2(random.uniform(e_x_min, e_x_max),
                    random.uniform(e_y_min, e_y_max))
 
-class Enemy:
 
+class Enemy:
     def get_random_x(self):
         return random.uniform(self.border_offset,
                               globals.resolution[0] - self.border_offset)
@@ -50,5 +51,5 @@ class Enemy:
             movement.scale_to_length(e_max_speed)
         self.xPos += movement.x
         self.yPos += movement.y
-        if self.yPos > globals.resolution[1] + self.size:
+        if self.yPos > globals.resolution[1] + self.size or self.xPos > globals.resolution[0] + self.size or self.xPos < -self.size:
             self.__init__()
