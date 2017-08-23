@@ -2,11 +2,12 @@ import pygame
 from star import Star
 from time import time
 from player import Player
-from enemy import Enemy
 from collision import has_collision
 
 import globals
 globals.init()
+
+from enemy import Enemy
 
 # Gameplay configuration things
 e_spawnrate = 1.1
