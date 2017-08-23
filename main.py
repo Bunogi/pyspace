@@ -10,21 +10,23 @@ globals.init()
 from enemy import Enemy
 
 # Gameplay configuration things
-e_spawnrate = 1.1
+e_spawnrate = 0.4
 e_spawn_timer = 0
+e_score_kill = 20
 
 
 def reset():
     global stars, enemies
-    global player
+    global player, score
     player = Player()
     stars = []
     enemies = []
+    score = 0
     for i in range(80):
         stars.append(Star())
 
-    # for i in range(10):
-    #     enemies.append(Enemy())
+    for i in range(7):
+        enemies.append(Enemy())
 
 
 dt = 0
@@ -84,6 +86,7 @@ while not done:
                 if has_collision(j, l):
                     proj_removal.append(i)
                     enemies.remove(l)
+                    score += e_score_kill
                     break
         j.draw()
 
@@ -99,5 +102,6 @@ while not done:
 
     player.draw()
 
+    globals.screen.blit(globals.main_font.render("Score: %5s" %(score), False, (0xFF, 0xFF, 0xFF)), (0, 0))
     pygame.display.flip()
     dt = time() - t_start
