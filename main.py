@@ -99,8 +99,7 @@ while not done:
         globals.screen.blit(globals.main_font.render("Paused", False, (0xFF, 0xFF, 0xFF)), (100, 450))
     else:
         player.update(dt)
-
-    player.draw()
+        player.draw()
 
     globals.screen.blit(globals.main_font.render("Score: %5s" %(score), False, (0xFF, 0xFF, 0xFF)), (0, 0))
     pygame.display.flip()

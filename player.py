@@ -46,6 +46,11 @@ class Player:
             self.shoot()
             self.t_last_shot = 0
 
+        # Disallow player to go off screen
+        clamp = lambda n, minn, maxn: max(min(maxn, n), minn)
+        self.xPos = clamp(self.xPos, 0, globals.resolution[0] - p_size)
+        self.yPos = clamp(self.yPos, 0, globals.resolution[1] - p_size)
+
     def shoot(self):
         globals.projectiles.append(Projectile(self.xPos + (p_size / 2),
                                               self.yPos - 5, -350))
